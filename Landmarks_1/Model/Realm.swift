@@ -28,6 +28,8 @@ enum Season: String, PersistableEnum, CaseIterable, Identifiable {
 }
 
 final class LandmarkData: Object, ObjectKeyIdentifiable, Codable, Identifiable{
+    @Persisted(primaryKey: true) var ID: ObjectId
+    
     @Persisted dynamic var id: Int = 0
     @Persisted dynamic var name: String = ""
     @Persisted dynamic var park: String = ""
@@ -58,3 +60,64 @@ class ProfileData: Object, ObjectKeyIdentifiable {
     @Persisted dynamic var seasonalPhoto: Season?
     @Persisted dynamic var goalDate = Date()
 }
+
+//func jsonAdd() {
+//    
+//    if let path = Bundle.main.path(forResource: "Data", ofType: "json") {
+//        do {
+//            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//            let try! JSONSerialization.jsonObject(with: data, options: [])
+//            
+//            for (index,subJson):(String, JSON) in json {
+//                
+//                do {
+//                    try realm.write {
+//                        
+//                        realm.create(Item.self, value: subJson, update: .modified)
+//                        
+//                    }
+//                    
+//                } catch let error as NSError {
+//                    print("Unable to write")
+//                    print(error)
+//                }
+//                
+//            }
+//            
+//        } catch {
+//            print("Error")
+//        }
+//        
+//    }
+//}
+
+//for (key,subJson):(String, JSON) in jsonObjects {
+//
+//    let thisItem = LandmarkData()
+//    thisItem.id = subJson["id"].intValue
+//    thisItem.name = subJson["name"].stringValue
+//    thisItem.visable = subJson["viewable"].boolValue
+//    thisItem.weapon = subJson["weapon"].boolValue
+//    thisItem.vehicle = subJson["vehicle"].boolValue
+//
+//    let genreArray = subJson["genres"].arrayValue
+//
+//    for genre in genreArray {
+//        let string = genre.stringValue
+//        let predicate = NSPredicate(format: "name = %@", string)
+//
+//        if let foundGenre = realm.objects(Genres.self).filter(predicate).first {
+//            thisItem.genres.append(foundGenre)
+//        }
+//    }
+//
+//    do {
+//        try realm.write {
+//            realm.create(Item.self, value: thisItem, update: .modified)
+//        }
+//
+//    } catch let error as NSError {
+//        print("Unable to write")
+//        print(error)
+//    }
+//}
