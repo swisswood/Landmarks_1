@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-struct searchBar: View {
+
+struct SearchBar: View {
     //Binding은 외부에서 값을 바인딩시킬수있다.
     //택스트필드에 들어갈 값을 저장하기위한 변수
     @Binding var text : String
@@ -88,7 +89,7 @@ struct LandmarkList: View {
     var body: some View {
         NavigationView {
             List{
-//                searchBar(text: self.$text)
+//                SearchBar(text: self.$text)
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favorites only")
                 }
