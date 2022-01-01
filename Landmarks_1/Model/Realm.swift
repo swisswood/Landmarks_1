@@ -28,19 +28,23 @@ enum Season: String, PersistableEnum, CaseIterable, Identifiable {
 }
 
 final class LandmarkData: Object, ObjectKeyIdentifiable, Codable, Identifiable{
-    @Persisted(primaryKey: true) var ID: ObjectId
-    
-    @Persisted dynamic var id: Int = 0
-    @Persisted dynamic var name: String = ""
-    @Persisted dynamic var park: String = ""
-    @Persisted dynamic var state: String = ""
-    @Persisted dynamic var _description: String = ""
-    @Persisted dynamic var isFavorite: Bool = false
-    @Persisted dynamic var isFeatured: Bool = false
+    @Persisted(primaryKey: true) var id: Int?
+    @Persisted var name: String = ""
+    @Persisted var park: String = ""
+    @Persisted var state: String = ""
+    @Persisted var _description: String = ""
+    @Persisted var isFavorite: Bool = false
+    @Persisted var isFeatured: Bool = false
 
-    override static func primaryKey() -> String? {
-        return "id"
+//    override static func primaryKey() -> String? {
+//        return "id"
+//    }
+    
+    convenience init(id: Int) {
+        self.init()
+        self.id = id
     }
+
 
 }
 
@@ -55,10 +59,10 @@ final class LandmarkGroup: Object, ObjectKeyIdentifiable {
 
 class ProfileData: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted dynamic var username: String
-    @Persisted dynamic var prefersNotifications = true
-    @Persisted dynamic var seasonalPhoto: Season?
-    @Persisted dynamic var goalDate = Date()
+    @Persisted var username: String
+    @Persisted var prefersNotifications = true
+    @Persisted var seasonalPhoto: Season?
+    @Persisted var goalDate = Date()
 }
 
 //func jsonAdd() {
